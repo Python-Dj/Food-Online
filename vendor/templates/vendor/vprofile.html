@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="main-section">
+        {% include "includes/cover.html" %}
+        <div class="page-section account-header buyer-logged-in">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <! ---- inclde sidebar ---->
+                        {% include "includes/v-sidebar.html" %}
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                        <div class="user-dashboard loader-holder">
+                            <div class="user-holder">
+                                <!-- My Restaurants Form Start -->
+                                {% include "includes/alert.html" %}
+                                <h6 class="text-uppercase">Manage Your Restaurant</h6>
+									<form action="{% url 'v-profile' %}" method="POST" enctype=multipart/form-data >
+                                        {% csrf_token %}
+										<div class="form-fields-set">
+											<ul>
+												<li>
+													<div class="row">
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="restaurant-info">
+																<div class="img-holder">
+																	<ul class="foodbakery-gallery-holder">
+																		<li class="gal-img">
+																			<div class="drag-list">
+																				<div class="item-thumb">
+																					<img class="thumbnail" src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+																				</div>
+																			</div>
+																		</li>
+																	</ul>
+																</div>
+																<div class="text-holder">
+																	<label>Update Profile Picture</label>
+																	<div class="upload-gallery">
+																		{{ profile_form.profile_picture }}
+                                                                        <ul style="color: red;">{{ profile_form.profile_picture.errors }}</ul>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="restaurant-info">
+																<div class="img-holder">
+																	<ul class="foodbakery-gallery-holder">
+																		<li class="gal-img">
+																			<div class="drag-list">
+																				<div class="item-thumb">
+																					<img class="thumbnail" src="{{ profile.cover_photo.url }}" alt="Cover photo">
+																				</div>
+																			</div>
+																		</li>
+																	</ul>
+																</div>
+																<div class="text-holder">
+																	<label>Update Cover Photo</label>
+																	<div class="upload-gallery">
+																		{{ profile_form.cover_photo }}
+                                                                        <ul style="color: red;">{{ profile_form.cover_photo.errors }}</ul>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="restaurant-info">
+																<div class="img-holder">
+																	<ul class="foodbakery-gallery-holder">
+																		<li class="gal-img">
+																			<div class="drag-list">
+																				<div class="item-thumb">
+																					<img class="thumbnail" src="{{ vendor.vendor_license.url }}" alt="Vendor License">
+																				</div>
+																			</div>
+																		</li>
+																	</ul>
+																</div>
+																<div class="text-holder">
+																	<label>Update License</label>
+																	<div class="upload-gallery">
+																		{{ vendor_form.vendor_license }}
+                                                                        <ul style="color: red;">{{ vendor_form.vendor_license.errors }}</ul>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															<div class="field-holder">
+																<label>Restaurant name *</label>
+																{{ vendor_form.vendor_name }}
+															</div>
+														</div>
+                                                        {% for form in profile_form %}
+                                                            {% if form.label != "Profile picture" and form.label != "Cover photo" %}
+                                                                {% if form.label == "Address" %}
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="field-holder">
+                                                                        {{ form.label }}
+                                                                        {{ form }}
+                                                                        <small class="text-muted float-right" >powered by Google</small>
+                                                                        <ul style="color:red;">{{ form.errors }}</ul>
+                                                                    </div>
+                                                                </div>
+                                                                {% else %}
+                                                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                                                        <div class="field-holder">
+                                                                            {{ form.label }}
+                                                                            {{ form }}
+                                                                            <ul style="color:red;">{{ form.errors }}</ul>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endfor %}
+														
+													</div>
+												</li>
+											</ul>
+											<div>
+												<div class="field-holder">
+													<div class="payment-holder input-button-loader">
+														<input type="submit" value="Update Restaurant" >
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+								<!-- My Restaurants Form End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock  %}

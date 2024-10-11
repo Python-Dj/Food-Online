@@ -1,0 +1,12 @@
+{
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Default Dark+",
+    "workbench.preferredDarkColorTheme": "Panda Syntax",
+    "workbench.preferredHighContrastColorTheme": "Atom One Dark",
+    "workbench.preferredHighContrastLightColorTheme": "Panda Syntax",
+    "workbench.preferredLightColorTheme": "Panda Syntax",
+    "workbench.editor.decorations.colors": true
+}
